@@ -39,3 +39,13 @@ RUN chown -R www-data:www-data /var/www/html
 RUN composer global require "laravel/installer"
 
 RUN composer self-update --2
+
+RUN apt-get update && apt-get -y install git autoconf zlib1g-dev libicu-dev libonig-dev libzip-dev unzip &&\
+    apt-get clean && \
+    #gRPC本体をインストール
+    pecl install grpc && \
+    pecl install protobuf && \
+    rm -rf /var/lib/apt/lists/* &&\
+    docker-php-ext-install pdo_mysql &&\
+    composer config -g process-timeout 3600 && \
+    mkdir -p /app
