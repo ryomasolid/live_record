@@ -10,16 +10,16 @@
     @foreach($articles as $article)
       <div class="card mx-auto mb-3 bg-info" style="width: 30rem;">
         <div class="card-body">
-          <div class="text-left pb-1 text-warning font-weight-bold">{{ $article->user->name }}</div>
-          <h5 class="card-title">{{ $article->artistLiveName }}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">{{ $article->liveSchedule }}</h6>
-          <p class="card-text">{!! nl2br(htmlspecialchars($article->setlist)) !!}</p>
+          <div class="text-left pb-1 text-warning font-weight-bold">{{ $article->data()["user_name"] }}</div>
+          <h5 class="card-title">{{ $article->data()["artistLiveName"] }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ $article->data()["liveSchedule"] }}</h6>
+          <p class="card-text">{!! nl2br(htmlspecialchars($article->data()["setlist"])) !!}</p>
           <div class="mx-auto d-flex justify-content-between" style="width: 100px;">
-            @if(Auth::id() == $article->user_id)
-            {!! Form::open(['route' => ['article.edit', $article->id], 'class' => 'w-50']) !!}
+            @if(Auth::id() == $article->data()["user_id"])
+            {!! Form::open(['route' => ['article.edit', $article->id()], 'class' => 'w-50']) !!}
               <input type="submit" value="編集" class="btn btn-link font-weight-bold">
             {!! Form::close() !!}
-            {!! Form::open(['route' => ['article.destroy', $article->id], 'method' => 'delete', 'class' => 'w-50']) !!}
+            {!! Form::open(['route' => ['article.destroy', $article->id()], 'method' => 'delete', 'class' => 'w-50']) !!}
               <input type="submit" value="削除" class="btn btn-link font-weight-bold">
             {!! Form::close() !!}
             @endif

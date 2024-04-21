@@ -1,3 +1,9 @@
+  @php
+    $db = app('firebase.firestore')->database()->collection('userIcon');
+    $icon = $db->document('ryoma')->snapshot()->data()["icon"];
+    $url = config('app.gcp_bucket_url').$icon;
+  @endphp
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -17,6 +23,9 @@
       <ul class="nav nav-pills">
         <li class="nav-item"><a href="{{ route('article.index') }}" class="nav-link">LiveRecord</a></li>
       </ul>
+      <div>
+        <img src={{ $url }} width="50" height="50" class="img-thumbnail" alt="ユーザーアイコン">
+      </div>
       <div class="btn-group float-right">
         <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {{ Auth::user()->name }}

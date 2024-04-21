@@ -4,9 +4,16 @@
 
 <div class="text-center row justify-content-center py-3 mx-auto w-100">
   <div class="col-12 px-2 py-3">
-    {{ Auth::user()->name }}
+    アイコン変更
   </div>
   <div class="col-12 px-2 py-3">
+    {{Form::open(['route' => 'setting.icon', 'method' => 'post', "enctype"=>"multipart/form-data"])}}
+      {{Form::file('image')}}
+      {{Form::submit()}}
+    {{Form::close()}}
+  </div>
+  <div class="py-5 border-top">
+    マイセットリスト
     @foreach($articles as $article)
     <div class="card mx-auto mb-3 bg-info" style="width: 30rem;">
       <div class="card-body">

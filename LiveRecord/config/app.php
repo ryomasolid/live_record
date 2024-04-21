@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Facade;
 return [
 
     'gcp_bucket_name' => env('FIREBASE_STORAGE_BUCKET_NAME', ''),
+    'gcp_bucket_url' => env('FIREBASE_STORAGE_BUCKET_URL', ''),
 
     /*
     |--------------------------------------------------------------------------
