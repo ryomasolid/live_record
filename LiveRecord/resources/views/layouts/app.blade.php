@@ -1,7 +1,13 @@
   @php
-    $db = app('firebase.firestore')->database()->collection('userIcon');
-    $icon = $db->document('ryoma')->snapshot()->data()["icon"];
-    $url = config('app.gcp_bucket_url').$icon;
+    $storage = app('firebase.storage')->getBucket(config('app.gcp_bucket_name'));
+    $object = $storage->object(Auth::user()->name);
+      $url = $object->signedUrl(
+        # This URL is valid for 60 minutes
+        new \DateTime('60 min'),
+        [
+            'version' => 'v4',
+        ]
+      );
   @endphp
 
 <!DOCTYPE html>

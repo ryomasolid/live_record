@@ -6,7 +6,7 @@
   <div class="col-12 px-2 py-3">
     {!! Form::open(['route' => ['article.updata', $article->id()], 'method' => 'put']) !!}
       <div class="card mx-auto mb-3" style="width: 30rem;">
-        <div class="card-body bg-info font-weight-bold">
+        <div class="card-body bg-light font-weight-bold">
           <div class="form-group">
             <label for="formGroupExampleInput">アーティスト名 / ライブ名</label>
             <input type="text" class="form-control bg-light" id="artistLiveName" name="artistLiveName" value={{ $article->data()["artistLiveName"] }}>

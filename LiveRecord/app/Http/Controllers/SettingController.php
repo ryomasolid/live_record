@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class SettingController extends Controller
 {
@@ -40,10 +41,11 @@ class SettingController extends Controller
 
     public function icon(Request $request)
     {
+        $userName = Auth::user()->name;
         $imageFile = $request->file('image');
-        $objectName = $imageFile->getClientOriginalName();
-        $register = $this->storage->upload(fopen($imageFile, 'r'), ['name' => 'myIcon/'.$objectName]);
-        $this->db->document('ryoma')->set(['icon' => $register->name()]);
+
+        $register = $this->storage->upload(fopen($imageFile, 'r'), ['name' => $userName]);
+        $this->db->document($userName)->set(['icon' => $register->name()]);
         return redirect()->route('article.index');
     }
 }
