@@ -8,9 +8,9 @@
       <button type=“button” class="btn btn-success" onclick="location.href='{{ route('article.create') }}'">新規作成</button>
     </div>
     @foreach($articles as $article)
-      <div class="card mx-auto mb-3 bg-info" style="width: 30rem;">
+      <div class="card mx-auto mb-3 bg-light" style="width: 30rem;">
         <div class="card-body">
-          <div class="text-left pb-1 text-warning font-weight-bold">{{ $article->data()["user_name"] }}</div>
+          <div class="text-left pb-1 text-info">{{ $article->data()["user_name"] }}</div>
           <h5 class="card-title">{{ $article->data()["artistLiveName"] }}</h5>
           <h6 class="card-subtitle mb-2 text-muted">{{ $article->data()["liveSchedule"] }}</h6>
           <p class="card-text">{!! nl2br(htmlspecialchars($article->data()["setlist"])) !!}</p>
